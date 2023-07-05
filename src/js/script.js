@@ -161,10 +161,20 @@
 
         // for every option in this category
         for(let optionId in param.options) {
-          
+
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
+
+          // check if there is param with a name of paramId in formData and if it includes optionId
+              
+          // check if the option is not default
+  
+          // add option price to price variable
+          
+          // check if the option is default
+  
+          // reduce price variable
         }
       }
 
