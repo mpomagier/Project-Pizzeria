@@ -167,19 +167,34 @@
           console.log(optionId, option);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
               
-          // check if the option is not default
+              // check if the option is not default
+              if (option.default !== true) {
+                console.log('option is not default');
   
-          // add option price to price variable
-          
-          // check if the option is default
+                // add option price to price variable
+                price += option.price;
+                console.log('price', price);
+              }
+            }
+          else {
+
+            // check if the option is default
+            if(option.default == true) {
+              console.log('option is default');
   
-          // reduce price variable
+              // reduce price variable
+              price -= option.price;
+              console.log('price', price);
+            }
+          }
         }
       }
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
+      console.log('priceElem', thisProduct.priceElem);
     }
 
   }
