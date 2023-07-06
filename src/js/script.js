@@ -226,7 +226,7 @@
     initData: function() {
       const thisApp = this;
 
-      this.data = dataSource;
+      thisApp.data = dataSource;
     },
 
     init: function() {
