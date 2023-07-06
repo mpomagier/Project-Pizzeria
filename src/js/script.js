@@ -171,7 +171,7 @@
           if(formData[paramId] && formData[paramId].includes(optionId)) {
               
               // check if the option is not default
-              if (option.default !== true) {
+              if (!option.default) {
                 console.log('option is not default');
   
                 // add option price to price variable
@@ -182,7 +182,7 @@
           else {
 
             // check if the option is default
-            if(option.default == true) {
+            if(option.default) {
               console.log('option is default');
   
               // reduce price variable
@@ -191,7 +191,7 @@
             }
           }
 
-          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
           
           if(optionImage) {
             if(formData[paramId] && formData[paramId].includes(optionId)) {
