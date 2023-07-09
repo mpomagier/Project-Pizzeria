@@ -51,7 +51,7 @@
       remove: '[href="#remove"]',
     },
   };
-  
+
   const classNames = {
     menuProduct: {
       wrapperActive: 'active',
@@ -61,7 +61,7 @@
       wrapperActive: 'active',
     },
   };
-  
+
   const settings = {
     amountWidget: {
       defaultValue: 1,
@@ -73,12 +73,12 @@
     },
 
   };
-  
+
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   };
-  
+
   class Product {
 
     constructor(id, data) {
@@ -125,10 +125,10 @@
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
     }
-    
+
     initAccordion() {
     const thisProduct = this;
-    
+
     /* START: add event listener to clickable trigger on event click */
     thisProduct.accordionTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
@@ -172,7 +172,7 @@
       });
     }
 
-    processOrder() {      
+    processOrder() {
       const thisProduct = this;
       // console.log('processOrder');
 
@@ -200,7 +200,7 @@
           // check if there is param with a name of paramId in formData and if it includes optionId
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
           if(optionSelected) {
-                        
+
             // check if the option is not default
             if (!option.default) {
               // console.log('option is not default');
@@ -215,7 +215,7 @@
             // check if the option is default
             if(option.default) {
               // console.log('option is default');
-  
+
               // reduce price variable
               price -= option.price;
              //  console.log('price', price);
@@ -223,17 +223,17 @@
           }
 
           const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
-          
+
           if(optionImage) {
             if (optionSelected) {
               optionImage.classList.add(classNames.menuProduct.imageVisible);
             } else {
               optionImage.classList.remove(classNames.menuProduct.imageVisible);
-            }    
-          } 
+            }
+          }
         }
       }
-      
+
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
 
@@ -431,7 +431,7 @@
       const thisCart = this;
 
       console.log('adding product', menuProduct);
-      
+
       /* generate HTML based on template */
       const generatedHTML = templates.cartProduct(menuProduct);
 
@@ -441,8 +441,7 @@
       /* add element to menu */
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      const newCartProduct = new CartProduct(menuProduct, generatedDOM);
-
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     }
   }
 
@@ -478,7 +477,7 @@
   }
 
   const app = {
-    
+
     initMenu: function() {
       const thisApp = this;
 
@@ -488,7 +487,7 @@
         new Product(productData, thisApp.data.products[productData]);
       }
     },
-    
+
     initData: function() {
       const thisApp = this;
 
@@ -515,6 +514,6 @@
       thisApp.cart = new Cart(cartElem);
     },
   };
-  
+
   app.init();
-}  
+}
