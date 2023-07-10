@@ -99,7 +99,7 @@
 
     renderInMenu() {
       const thisProduct = this;
-      
+
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
 
@@ -115,7 +115,7 @@
 
     getElements(){
       const thisProduct = this;
-    
+
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
@@ -234,11 +234,11 @@
         }
       }
 
-      /* multiply price by amount */
-      price *= thisProduct.amountWidget.value;
-
       // Store the price in priceSingle property
       thisProduct.priceSingle = price;
+
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
@@ -249,7 +249,7 @@
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      
+
       thisProduct.amountWidgetElem.addEventListener('updated', function() {
         thisProduct.processOrder();
       });
@@ -278,25 +278,25 @@
 
     prepareCartProductParams() {
       const thisProduct = this;
-    
+
       const formData = utils.serializeFormToObject(thisProduct.form);
       const params = {};
-    
+
       // for very category (param)
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
-    
+
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
           label: param.label,
           options: {}
         }
-    
+
         // for every option in this category
         for(let optionId in param.options) {
           const option = param.options[optionId];
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-    
+
           if(optionSelected) {
 
             // option is selected!
@@ -304,7 +304,7 @@
           }
         }
       }
-    
+
       return params;
     }
 
@@ -341,12 +341,12 @@
       const isNotANumber = isNaN(newValue);
       const isLessThanMin = newValue < settings.amountWidget.defaultMin;
       const isGreaterThanMax = newValue > settings.amountWidget.defaultMax;
-      
+
       if (isNotANumber || isLessThanMin || isGreaterThanMax) {
         thisWidget.input.value = thisWidget.value;
         return;
       }
-      
+
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
 
@@ -356,12 +356,12 @@
 
       }
       if(thisWidget.value < settings.amountWidget.defaultMin) {
-        thisWidget.input.value = settings.amountWidget.defaultMin;    
+        thisWidget.input.value = settings.amountWidget.defaultMin;
         thisWidget.value = settings.amountWidget.defaultValue;
 
       }
 
-      thisWidget.announce(); 
+      thisWidget.announce();
     }
 
     initActions() {
@@ -501,7 +501,7 @@
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
-  
+
       thisApp.initData();
       thisApp.initMenu();
       thisApp.initCart();
