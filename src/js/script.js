@@ -94,7 +94,6 @@
       thisProduct.processOrder();
       thisProduct.initAmountWidget();
 
-      // console.log('new Product:', thisProduct);
     }
 
     renderInMenu() {
@@ -154,7 +153,6 @@
 
     initOrderForm() {
       const thisProduct = this;
-      // console.log('initOrderForm');
 
       thisProduct.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -176,11 +174,9 @@
 
     processOrder() {
       const thisProduct = this;
-      // console.log('processOrder');
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
-      // console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -190,14 +186,12 @@
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        // console.log(paramId, param);
 
         // for every option in this category
         for(let optionId in param.options) {
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          // console.log(optionId, option);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
@@ -205,22 +199,18 @@
 
             // check if the option is not default
             if (!option.default) {
-              // console.log('option is not default');
 
               // add option price to price variable
               price += option.price;
-              // console.log('price', price);
             }
           }
           else {
 
             // check if the option is default
             if(option.default) {
-              // console.log('option is default');
 
               // reduce price variable
               price -= option.price;
-             //  console.log('price', price);
             }
           }
 
@@ -244,7 +234,6 @@
 
       // update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
-      // console.log('priceElem', thisProduct.priceElem);
     }
 
     initAmountWidget() {
@@ -316,9 +305,6 @@
 
     constructor(element) {
       const thisWidget = this;
-
-      //console.log('AmountWidget:', thisWidget);
-      //console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
       thisWidget.setValue(settings.amountWidget.defaultValue);
@@ -405,8 +391,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-
-      console.log('new Cart', thisCart);
     }
 
     getElements(element) {
@@ -417,8 +401,11 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
     }
 
     initActions() {
@@ -432,8 +419,6 @@
     add(menuProduct) {
       const thisCart = this;
 
-      console.log('adding product', menuProduct);
-
       /* generate HTML based on template */
       const generatedHTML = templates.cartProduct(menuProduct);
 
@@ -444,8 +429,32 @@
       thisCart.dom.productList.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+
+      thisCart.update();
+    }
+
+    update() {
+      const thisCart = this;
+      const deliveryFee = settings.cart.defaultDeliveryFee;
+
+      thisCart.totalNumber = 0;
+      thisCart.subtotalPrice = 0;
+
+      for(let product of thisCart.products) {
+        thisCart.subtotalPrice += product.price;
+        thisCart.totalNumber += product.amount;
+      }
+
+      if(thisCart.totalNumber === 0) {
+        thisCart.deliveryFee = 0;
+      } else {
+        thisCart.deliveryFee = deliveryFee;
+
+      thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
     }
   }
+}
 
   class CartProduct {
 
@@ -456,6 +465,7 @@
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.name = menuProduct.name;
       thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.amountWidgetElem = menuProduct.amountWidgetElem;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.price = menuProduct.price;
       thisCartProduct.params = menuProduct.params;
@@ -476,6 +486,10 @@
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+      thisCartProduct.dom.deliveryFee = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.deliveryFee);
+      thisCartProduct.dom.subtotalPrice = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.subtotalPrice);
+      thisCartProduct.dom.totalPrice = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.totalPrice);
+      thisCartProduct.dom.totalNumber = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.totalNumber);
     }
 
     initAmountWidget() {
@@ -497,8 +511,6 @@
     initMenu: function() {
       const thisApp = this;
 
-      // console.log('thisApp.data:', thisApp.data);
-
       for(let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
@@ -512,11 +524,6 @@
 
     init: function() {
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
