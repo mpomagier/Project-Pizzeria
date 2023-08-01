@@ -34,11 +34,12 @@ class CartProduct {
 
   initAmountWidget() {
     const thisCartProduct = this;
-
+    
     thisCartProduct.amountWidget = new AmountWidget(
       thisCartProduct.dom.amountWidgetElem
     );
 
+    thisCartProduct.amountWidget.setValue(thisCartProduct.amount);
     thisCartProduct.dom.amountWidgetElem.addEventListener(
       'updated',
       function () {
@@ -48,6 +49,21 @@ class CartProduct {
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       }
     );
+  }
+
+  getData() {
+    const thisCartProduct = this;
+
+    const productSummary = {
+      id: thisCartProduct.id,
+      name: thisCartProduct.name,
+      amount: thisCartProduct.amount,
+      priceSingle: thisCartProduct.priceSingle,
+      price: thisCartProduct.price,
+      params: thisCartProduct.params,
+    };
+
+    return productSummary;
   }
 
   initActions() {
@@ -74,21 +90,6 @@ class CartProduct {
     });
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-  }
-
-  getData() {
-    const thisCartProduct = this;
-
-    const productSummary = {
-      id: thisCartProduct.id,
-      name: thisCartProduct.name,
-      amount: thisCartProduct.amount,
-      priceSingle: thisCartProduct.priceSingle,
-      price: thisCartProduct.price,
-      params: thisCartProduct.params,
-    };
-
-    return productSummary;
   }
 }
 
