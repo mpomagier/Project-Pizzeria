@@ -1,10 +1,8 @@
-import {select} from '../settings.js';
+import { select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
-
   constructor(menuProduct, element) {
-
     const thisCartProduct = this;
 
     thisCartProduct.id = menuProduct.id;
@@ -22,7 +20,7 @@ class CartProduct {
     console.log('new CartProduct', thisCartProduct);
   }
 
-  getElements(element){
+  getElements(element) {
     const thisCartProduct = this;
 
     thisCartProduct.dom = {
@@ -37,24 +35,29 @@ class CartProduct {
   initAmountWidget() {
     const thisCartProduct = this;
 
-    thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidgetElem);
+    thisCartProduct.amountWidget = new AmountWidget(
+      thisCartProduct.dom.amountWidgetElem
+    );
 
-    thisCartProduct.dom.amountWidgetElem.addEventListener('updated', function() {
-
-      thisCartProduct.amount = thisCartProduct.amountWidget.value;
-      thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
-      thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
-    });
+    thisCartProduct.dom.amountWidgetElem.addEventListener(
+      'updated',
+      function () {
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price =
+          thisCartProduct.priceSingle * thisCartProduct.amount;
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+      }
+    );
   }
 
   initActions() {
     const thisCartProduct = this;
 
-    thisCartProduct.dom.edit.addEventListener('click', function(event) {
+    thisCartProduct.dom.edit.addEventListener('click', function (event) {
       event.preventDefault();
     });
 
-    thisCartProduct.dom.remove.addEventListener('click', function(event) {
+    thisCartProduct.dom.remove.addEventListener('click', function (event) {
       event.preventDefault();
       thisCartProduct.remove();
     });
@@ -82,7 +85,7 @@ class CartProduct {
       amount: thisCartProduct.amount,
       priceSingle: thisCartProduct.priceSingle,
       price: thisCartProduct.price,
-      params: thisCartProduct.params
+      params: thisCartProduct.params,
     };
 
     return productSummary;

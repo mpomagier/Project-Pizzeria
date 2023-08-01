@@ -1,5 +1,7 @@
 import { templates, select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
+import DatePicker from './DatePicker.js';
+import HourPicker from './HourPicker.js';
 
 class Booking {
   constructor(element) {
@@ -11,36 +13,38 @@ class Booking {
 
   render(element) {
     const thisBooking = this;
-
-    // Generate HTML based on template
     const generatedHTML = templates.bookingWidget();
 
-    // Create empty object thisBooking.dom
     thisBooking.dom = {};
-
-    // Add wrapper property to thisBooking.dom and assign it to element
     thisBooking.dom.wrapper = element;
-
-    // Change content of wrapper to generatedHTML
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
-
-    // Add property thisBooking.dom.peopleAmount and assign it to wrapper element with class .people-amount
-    thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.peopleAmount);
-
-    // Add property thisBooking.dom.hoursAmount and assign it to wrapper element with class .hours-amount
-    thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
+    thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(
+      select.booking.peopleAmount
+    );
+    thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(
+      select.booking.hoursAmount
+    );
+    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
+      select.widgets.datePicker.wrapper
+    );
+    thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(
+      select.widgets.hourPicker.wrapper
+    );
   }
 
   initWidgets() {
     const thisBooking = this;
 
-    // Create new instance of AmountWidget class and assign it to thisBooking.peopleAmount property
-    thisBooking.peopleAmountWidget = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.peopleAmountWidget = new AmountWidget(
+      thisBooking.dom.peopleAmount
+    );
 
-    // Create new instance of AmountWidget class and assign it to thisBooking.hoursAmount property
-    thisBooking.hoursAmountWidget = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.hoursAmountWidget = new AmountWidget(
+      thisBooking.dom.hoursAmount
+    );
+    thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
+    thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
   }
-
 }
 
 export default Booking;
