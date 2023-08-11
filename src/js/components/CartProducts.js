@@ -34,7 +34,7 @@ class CartProduct {
 
   initAmountWidget() {
     const thisCartProduct = this;
-    
+
     thisCartProduct.amountWidget = new AmountWidget(
       thisCartProduct.dom.amountWidgetElem
     );

@@ -173,6 +173,21 @@
         }
 
       }
+
+      &.selected {
+        border: 4px solid $color-chosen;
+
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: $color-success;
+          opacity: 0.4;
+        }
+      }
     }
 
     [data-table="1"] {

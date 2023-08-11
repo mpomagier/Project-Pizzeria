@@ -86,6 +86,9 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  selected: {
+    table: 'selected',
+  },
 };
 
 export const settings = {
