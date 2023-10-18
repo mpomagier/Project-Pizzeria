@@ -313,7 +313,6 @@ class Booking {
         payload.starters.push('water');
       }
     }
-    console.log('Sending payload:', payload);
 
     const options = {
       method: 'POST',
@@ -336,8 +335,12 @@ class Booking {
           payload.duration,
           payload.table
         );
+
         console.log('Booking response:', parsedResponse);
+
+        thisBooking.updateDOM();
       });
+
   }
 }
 
