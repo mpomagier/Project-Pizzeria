@@ -306,13 +306,11 @@ class Booking {
       payload.starters.push(starter.value);
     }
 
-    if (payload.starters.length === 0) {
-      payload.starters = [];
-    } else {
-      if (payload.starters.includes('bread') && !payload.starters.includes('water')) {
+    if (payload.starters.includes('bread')) {
         payload.starters.push('water');
       }
-    }
+
+    payload.starters = [...new Set(payload.starters)];
 
     const options = {
       method: 'POST',
@@ -325,7 +323,6 @@ class Booking {
     fetch(url, options)
       .then(response => response.json())
       .then(parsedResponse => {
-        console.log('Booking Sent', parsedResponse);
 
         const hourStr = utils.numberToHour(payload.hour);
 
