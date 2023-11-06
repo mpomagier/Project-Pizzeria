@@ -269,5 +269,32 @@
       "ppl": 3,
       "starters": []
       }
-   ]
+   ],
+
+   "quotes": [
+      {
+         "id": 1,
+         "title": "Best Pizza in town!",
+         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+         "author": "Marika Lodor"
+       },
+       {
+         "id": 2,
+         "title": "Fast delivery, very good quality of ingredients!",
+         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+         "author": "Chriss Foul"
+       },
+       {
+         "id": 3,
+         "title": "Nice waiters, hot and tasty. Special order just as asked for!",
+         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+         "author": "Derek Wicko"
+       },
+       {
+         "id": 4,
+         "title": "Time and money well spent!",
+         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+         "author": "Stefanie Dostojewska"
+       }
+    ]
 }

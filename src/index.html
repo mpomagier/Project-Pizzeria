@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="./vendor/range-slider.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css" integrity="sha512-8mKtL3LD+gZ3bBWRy5c+7g2pD4G7Ll9u0I/hfGf/nJG3LRT3pQJ3V8F0B5V7Xu0p/bbY4y56QZn8bLVY+I/CPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 <body>
 
@@ -64,6 +64,34 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div id="home-page" class="home-page container">
+        <div class="home-page__wrapper">
+          <div class="home-page__content">
+
+            <a class="btn-main btn-order" href="#/order">Order online</a>
+            <a class="btn-main btn-booking" href="#/booking">Book a table</a>
+          </div>
+
+          <div class="home-info">
+            <p>Opening hours</p>
+          </div>
+          <div class="carousel">
+            <div id="template-quote-widget" type="text/x-handlebars-template">
+              <div class="carousel-cell">
+                <a>image</a>
+                <span>{{quote}}</span>
+              </div>
+            </div>
+
+            <div class="carousel-cell">
+              <a>image</a>
+              <span>{{ quote-1 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -248,7 +276,7 @@
   <script src="js/app.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="./vendor/range-slider.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js" integrity="sha512-Nx/M3T/fWprNarYOrnl+gfWZ25YlZtSNmhjHeC0+2gCtyAdDFXqaORJBj1dC427zt3z/HwkUpPX+cxzonjUgrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 </body>
 </html>

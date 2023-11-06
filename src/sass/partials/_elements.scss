@@ -1,5 +1,36 @@
 /* Buttons */
 
+.image-1 {
+  background-image: url('src/images/assets/pizza-1.jpg');
+}
+
+.btn-main {
+  display: block;
+  width: calc(50% - 20px);
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: $color-light;
+  padding: 10px 0;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.btn-order {
+  background-image: url('src/images/assets/pizza-1.jpg');
+}
+
+.btn-booking {
+  background-image: url('src/images/assets/pizza-2.jpg');
+}
+
+
 .btn-primary {
   @include btn($color-dark, $color-light, $color-dark);
 }

@@ -135,4 +135,7 @@ export const templates = {
   bookingWidget: Handlebars.compile(
     document.querySelector(select.templateOf.bookingWidget).innerHTML
   ),
+  quoteWidget: Handlebars.compile(
+    document.querySelector('#template-quote-widget').innerHTML
+  ),
 };
