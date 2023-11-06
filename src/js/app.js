@@ -2,6 +2,8 @@ import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Flickity from 'flickity';
+import quotes from './quotes.js';
 
 const app = {
   initPages: function () {
@@ -107,6 +109,8 @@ const app = {
 
     thisApp.booking = new Booking(element);
   },
+
+
 
   init: function () {
     const thisApp = this;

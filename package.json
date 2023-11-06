@@ -2,8 +2,9 @@
     "name": "fer-07-project",
     "version": "1.0.0",
     "description": "",
-    "main": "index.html",
+    "main": "server.js",
     "scripts": {
+        "start": "node server.js",
         "init-project": "npm install && npm-run-all init:*",
         "init:dirs": "mkdirp dist src/sass src/css src/vendor src/images src/js db",
         "init:files": "touch README.md src/index.html src/sass/style.scss src/js/script.js db/app.json",
@@ -52,6 +53,7 @@
     },
     "dependencies": {
         "flatpickr": "^4.6.13",
+        "flickity": "^3.0.0",
         "json-server": "^0.17.3"
     }
 }
