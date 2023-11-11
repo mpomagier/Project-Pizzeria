@@ -68,30 +68,55 @@
       <div id="home-page" class="home-page container">
         <div class="home-page__wrapper">
           <div class="home-page__content">
-
-            <a class="btn-main btn-order" href="#/order">Order online</a>
-            <a class="btn-main btn-booking" href="#/booking">Book a table</a>
+            <div class="btn-container">
+              <a href="#order" class="btn-main btn-order"><h3>Order online</h3></a>
+              <a href="#booking" class="btn-main btn-booking"><h3>Book a table</h3></a>
+            </div>
+            <div class="btn-container">
+              <a class="btn-main btn-hours">
+                <h3>Opening hours</h3>
+                <p>Tue-Sun,12:00PM - 12:00AM</p>
+              </a>
+            </div>
           </div>
 
-          <div class="home-info">
-            <p>Opening hours</p>
-          </div>
-          <div class="carousel">
-            <div id="template-quote-widget" type="text/x-handlebars-template">
+
+          <div class="carousel" data-flickity='{ "wrapAround": true }'>
+            <script id="template-quote-widget" type="text/x-handlebars-template">
               <div class="carousel-cell">
-                <a>image</a>
-                <span>{{quote}}</span>
+                1
+                {{{image}}}
+                <div class="carousel-quote">
+                    <div class="carousel-quote-title">{{title}}</div>
+                    <p class="carousel-quote-text">{{text}}</p>
+                    <div class="carousel-quote-author">{{author}}</div>
+                </div>
               </div>
-            </div>
-
-            <div class="carousel-cell">
-              <a>image</a>
-              <span>{{ quote-1 }}</span>
-            </div>
+              <div class="carousel-cell">
+                2
+                {{{image}}}
+                <div class="carousel-quote">
+                    <div class="carousel-quote-title">{{title}}</div>
+                    <p class="carousel-quote-text">{{text}}</p>
+                    <div class="carousel-quote-author">{{author}}</div>
+                </div>
+              </div>
+              <div class="carousel-cell">
+                3
+                {{{image}}}
+                <div class="carousel-quote">
+                    <div class="carousel-quote-title">{{title}}</div>
+                    <p class="carousel-quote-text">{{text}}</p>
+                    <div class="carousel-quote-author">{{author}}</div>
+                </div>
+              </div>
+            </script>
           </div>
+
         </div>
       </div>
     </section>
+
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -99,6 +124,7 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
       <div class="widget-amount"> <!-- widget-amount -->

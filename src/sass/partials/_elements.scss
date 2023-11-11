@@ -1,21 +1,40 @@
 /* Buttons */
 
-.image-1 {
-  background-image: url('src/images/assets/pizza-1.jpg');
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
 }
 
 .btn-main {
-  display: block;
-  width: calc(50% - 20px);
-  margin: 10px;
+  margin: 2px;
+  height: 100px;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
   color: $color-light;
-  padding: 10px 0;
+  padding: 20px 0;
+  font-size: 1.5em;
   box-sizing: border-box;
   background-size: cover;
   background-position: center;
   transition: background-color 0.3s;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+
+  h3 {
+    transform: scaleX(0.8);
+    margin: 0;
+  }
+
+  p {
+    transform: scaleX(0.8);
+    margin: 0;
+    margin-top: -5px;
+    font-size: 0.7em;
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.5);
@@ -23,11 +42,22 @@
 }
 
 .btn-order {
-  background-image: url('src/images/assets/pizza-1.jpg');
+  background-image: url('../images/assets/pizza-1.jpg');
 }
 
 .btn-booking {
-  background-image: url('src/images/assets/pizza-2.jpg');
+  background-image: url('../images/assets/pizza-2.jpg');
+}
+
+.btn-booking, .btn-order {
+  display: inline-flex;
+  width: calc(50% - 4px);
+}
+
+.btn-hours {
+  width: 100%;
+  background-color: $color-main;
+  margin-top: 0;
 }
 
 
