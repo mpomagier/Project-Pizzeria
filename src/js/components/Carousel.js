@@ -1,28 +1,27 @@
-import Flickity from 'flickity';
 
 class Carousel {
-    constructor(element) {
-      this.element = element;
-      this.initFlickity();
-    }
+  constructor(wrapper) {
+    const  thisCarousel = this;
 
-    initFlickity() {
-      // Inicjalizacja Flickity
-      this.flickity = new Flickity(this.element, {
-        // Opcje Flickity
-        wrapAround: true,
-        pageDots: false,
-      });
-    }
+    thisCarousel.dom = {};
 
-    renderItems(items) {
-      // Renderowanie elementów karuzeli za pomocą Handlebars
-      const template = Handlebars.compile(document.querySelector('#template-quote-widget').innerHTML);
-      items.forEach(item => {
-        const html = template(item);
-        this.element.insertAdjacentHTML('beforeend', html);
-      });
-      this.flickity.reloadCells(); // Odświeżanie Flickity po dodaniu nowych elementów
-    }
+    thisCarousel.dom.wrapper = wrapper;
+    thisCarousel.initPlugin();
   }
+
+  initPlugin(){
+    const thisCarousel = this;
+
+    thisCarousel.dom.carousel = this.dom.wrapper.querySelector('.main-carousel');
+
+    // eslint-disable-next-line no-unused-vars, no-undef
+    const flkty = new Flickity( thisCarousel.dom.carousel, {
+      cellAlign: 'left',
+      contain: true,
+      autoPlay: 3000,
+      wrapAround: true
+    });
+  }
+}
+
 export default Carousel;
