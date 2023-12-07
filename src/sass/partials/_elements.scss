@@ -55,10 +55,10 @@
   flex-direction: column;
   align-items: center;
   width: calc(50% - 4px);
-  transition: 0.6s;
+  transition: 0.3s;
   margin-top: 30px;
 
-  .subtitle-hidden{
+  .subtitle-hidden {
     display: none;
     width: 100%;
   }
@@ -67,7 +67,7 @@
     padding-top: 0;
     z-index: 2;
 
-    .subtitle-hidden{
+    .subtitle-hidden {
       display: block;
     }
   }
@@ -174,5 +174,17 @@ select {
     .checkbox__checkmark {
       border-radius: 50%;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-main {
+    width: 100%;
+    height: 50px;
+    font-size: 0.6em;
+  }
+
+  .btn-hours h3 {
+    margin-top: -5px;
   }
 }

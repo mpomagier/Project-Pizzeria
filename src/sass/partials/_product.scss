@@ -116,3 +116,39 @@
     padding: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .product {
+    padding: ($base-size * 4) ($base-size * 2);
+    margin: ($base-size * 2) 0;
+    border-radius: 0;
+
+    &__params {
+      margin: 0 0 ($base-size * 2) 0;
+    }
+
+    &__images {
+      width: 20%;
+      height: auto;
+      opacity: 1;
+
+      &.small {
+        width: 20%;
+        height: auto;
+      }
+    }
+    li {
+      width: 110px;
+    }
+  }
+
+  div .amount {
+    width: 200px;
+    height: auto;
+    text-align: center;
+  }
+
+  .widget-amount input {
+    width: 30px;
+  }
+}

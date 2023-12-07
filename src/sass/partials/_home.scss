@@ -1,6 +1,11 @@
 .home-page__content {
   background-color: #fff;
+  margin: 40px;
   padding: 40px;
+
+  .social a {
+    color: $color-main;
+  }
 }
 
 .gallery {
@@ -128,7 +133,7 @@
       justify-content: center;
       align-items: flex-start;
     }
-    
+
     .title {
       font-size: 14px;
       font-weight: $font-bold;
@@ -144,6 +149,45 @@
     .author {
       font-size: 14px;
       font-style: italic;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-cell {
+    width: calc(100% / 2 - 10px);
+    margin: 0;
+    padding: 0;
+  }
+
+  .carousel {
+    .main-carousel {
+      .carousel-cell {
+        min-height: 193px;
+        width: 100%;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+
+      .image-col-6,
+      .titles-col-6 {
+        flex: 1;
+      }
+
+      .image-col-6 {
+        padding: 0 40px;
+
+        .image-wrapper {
+          padding-top: 0;
+        }
+      }
+
+      .titles-col-6 {
+        padding: 0 40px;
+        align-items: center;
+      }
     }
   }
 }
